@@ -1,22 +1,17 @@
 /* globals jest */
 
-jest.mock('react-dom');
 jest.mock('../store/store', () => jest.fn(() => ({ storeKey: 'storeValue' }) ));
-const configureStore = require('../store/store');
-
-import Root from '../components/root';
+import configureStore from '../store/store';
+import ReactDOM from 'react-dom';
 
 describe('entry', () => {
   let Entry,
-      ReactDOM,
       Root,
       renderedRoot;
 
   beforeAll(() => {
     document.addEventListener = jest.fn();
     document.getElementById = jest.fn(id => id);
-
-    ReactDOM = require('react-dom');
     ReactDOM.render = jest.fn();
 
     Root = require('../components/root');

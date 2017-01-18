@@ -1,6 +1,7 @@
 /* globals jest */
 
-jest.mock('react-router');
+import { hashHistory } from 'react-router';
+import * as ListingApiUtil from '../util/listing_api_util';
 
 import {
   RECEIVE_ALL_LISTINGS,
@@ -35,11 +36,9 @@ describe('listing actions', () => {
   });
 
   describe('thunks', () => {
-    let ListingApiUtil,
-        store;
+    let store;
 
     beforeEach(() => {
-      ListingApiUtil = require('../util/listing_api_util');
       store = mockStore({ listings: {} });
     });
 
@@ -86,7 +85,7 @@ describe('listing actions', () => {
 
       it('dispatches RECEIVE_LISTING when a listing has been created', () => {
         const newListing = { title: "New Title", body: "New Body" };
-        ListingApiUtil.createListing = jest.fn((listing) => (
+        ListingApiUtil.createListing = jest.fn(listing => (
           Promise.resolve({ 1: listing })
         ));
         const expectedActions = [{ type: "RECEIVE_LISTING", listing: { 1: newListing }}];
@@ -104,9 +103,10 @@ describe('listing actions', () => {
 
       it('dispatches RECEIVE_LISTING when a listing has been updated', () => {
         const updatedListing = { title: "Updated Title", body: "Updated Body", id: 2 };
-        ListingApiUtil.updateListing = jest.fn((listing) => (
+        ListingApiUtil.updateListing = jest.fn(listing => (
           Promise.resolve({ [updatedListing.id]: updatedListing })
         ));
+        hashHistory.push = jest.fn();
         const expectedActions = [{
           type: "RECEIVE_LISTING",
           listing: { [updatedListing.id]: updatedListing }
@@ -114,6 +114,7 @@ describe('listing actions', () => {
 
         return store.dispatch(updateListing(updatedListing)).then(() => {
           expect(store.getActions()).toEqual(expectedActions);
+          expect(hashHistory.push).toBeCalledWith('/');
         });
       });
     });
@@ -126,7 +127,7 @@ describe('listing actions', () => {
       it('dispatches REMOVE_LISTING when a listing has been deleted', () => {
         const listing = { title: "Title", body: "Body", id: 3 };
 
-        ListingApiUtil.deleteListing = jest.fn((listing) => (
+        ListingApiUtil.deleteListing = jest.fn(listing => (
           Promise.resolve({ [listing.id]: listing })
         ));
         const expectedActions = [{

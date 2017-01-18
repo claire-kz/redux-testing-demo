@@ -1,12 +1,11 @@
 /* globals jest */
 
-jest.mock('../reducers/root_reducer', () => {
-  return jest.fn((oldState, action) => ({
+jest.mock('../reducers/root_reducer', () => (
+  jest.fn((oldState, action) => ({
     listings: { 1: { id: 1, title: "Title", body: "Body" } }
-  }));
-});
-const RootReducer = require('../reducers/root_reducer');
-
+  }))
+));
+import RootReducer from '../reducers/root_reducer';
 import configureStore from '../store/store';
 
 describe('Store', () => {

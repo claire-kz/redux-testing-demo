@@ -2,12 +2,11 @@
 
 import React from 'react';
 import ListingIndexItem from '../components/listings/listing_index_item';
-import { Link } from 'react-router';
+import { Link, hashHistory } from 'react-router';
 import { shallow } from 'enzyme';
 
 describe('listing index item', () => {
   let listing,
-      hashHistory,
       listingIndexNode,
       deleteListing;
 
@@ -19,7 +18,6 @@ describe('listing index item', () => {
     };
 
     deleteListing = jest.fn();
-    hashHistory = require('react-router').hashHistory;
     hashHistory.push = jest.fn();
 
     const props = {

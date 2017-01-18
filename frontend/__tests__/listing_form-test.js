@@ -1,7 +1,6 @@
 /* globals jest */
 
-jest.mock('../actions/listing_actions');
-const ListingActions = require('../actions/listing_actions');
+import * as ListingActions from '../actions/listing_actions';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
