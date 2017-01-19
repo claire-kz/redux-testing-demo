@@ -2,8 +2,6 @@
 
 Sample Assessment for a Rails & React-Redux app.
 
-## React-Redux Assessment
-
 ### Design Documents
 * [Database Schema][db_schema]
 
@@ -13,7 +11,7 @@ Sample Assessment for a Rails & React-Redux app.
 1. `npm install`
 2. `bundle install`
 3. `bundle exec rake db:setup`
-  - NB: you will need to have a PostgreSQL server running!
+  - NB: you will need to have a ListinggreSQL server running!
   - All required backend code is provided
 
 To test your code live in the browser, run:
@@ -43,28 +41,28 @@ Entry point test:
 
 Redux tests:
 
-1. `frontend/__tests__/post_api_util-test.js`
-2. `frontend/__tests__/post_actions-test.js`
+1. `frontend/__tests__/listing_api_util-test.js`
+2. `frontend/__tests__/listing_actions-test.js`
 3. `frontend/__tests__/reducers-test.js`
 4. `frontend/__tests__/store-test.js`
 
 Component tests:
 
-1. `frontend/__tests__/post_index_container-test.js`
-2. `frontend/__tests__/post_index-test.js`
-3. `frontend/__tests__/post_index_item-test.js`
-4. `frontend/__tests__/post_form-test.js`
-  * Write `PostFormContainer` before `PostForm` (this spec file tests both components)
-4. `frontend/__tests__/post_show-test.js`
-  * Write `PostFormContainer` before `PostForm` (this spec file tests both components)
+1. `frontend/__tests__/listing_index_container-test.js`
+2. `frontend/__tests__/listing_index-test.js`
+3. `frontend/__tests__/listing_index_item-test.js`
+4. `frontend/__tests__/listing_form-test.js`
+  * Write `ListingFormContainer` before `ListingForm` (this spec file tests both components)
+4. `frontend/__tests__/listing_show-test.js`
+  * Write `ListingFormContainer` before `ListingForm` (this spec file tests both components)
 
-## Debugging tips
+### Debugging tips
 
 Jest is Facebook's defacto testing framework for React components and Flux apps.  
 Here are some tips for making debugging a little less intimidating.
 
 1. Look at the test file to see how we expect the method to behave.  Jest reads
-  similarly to RSpec.  
+  similarly to RSpec & Jasmine.  
 
 2. For more control over how specs are run, Install jest globally: `npm install
 -g jest-cli`.  You will now be able to run the following commands:
