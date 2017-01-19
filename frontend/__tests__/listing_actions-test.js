@@ -48,7 +48,7 @@ describe('listing actions', () => {
       });
 
       it('dispatches RECEIVE_ALL_LISTINGS when listings have been fetched', () => {
-        const listings = { 1: { id: 1, title: "Test", body: "Works?"} };
+        const listings = { 1: { id: 1, title: "Test", body: "Works?" }};
         ListingApiUtil.fetchListings = jest.fn(() => (
           Promise.resolve(listings)
         ));

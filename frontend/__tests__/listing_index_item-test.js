@@ -35,13 +35,13 @@ describe('listing index item', () => {
   it('shows the listing\'s title as a Link to the listing\'s show page', () => {
     const showLink = listingIndexNode.find(Link);
 
-    expect(showLink.node.props.children).toEqual(`${listing.title}`);
-    expect(showLink.node.props.to).toEqual(`/listings/${listing.id}`);
+    expect(showLink.props().children).toEqual(`${listing.title}`);
+    expect(showLink.props().to).toEqual(`/listings/${listing.id}`);
   });
 
   it('has a button that links to the listing edit page', () => {
     const editButton = listingIndexNode.find('button').filterWhere(button =>
-      /edit/i.test(button.node.props.children)
+      /edit/i.test(button.props().children)
     );
     expect(editButton).toBeDefined();
 
@@ -52,7 +52,7 @@ describe('listing index item', () => {
 
   it('has a button to delete listing', () => {
     const deleteButton = listingIndexNode.find('button').filterWhere(button =>
-      /delete/i.test(button.node.props.children)
+      /delete/i.test(button.props().children)
     );
     expect(deleteButton).toBeDefined();
 
