@@ -29,6 +29,16 @@ describe('listing form container', () => {
       listingFormNode = mount(<ListingFormContainer formType="new" store={fakeStore} />);
     });
 
+    it('correctly maps state to props', () => {
+      expect(listingFormNode.find('ListingForm').props().listing).toEqual({
+        title: "", body: ""
+      });
+    });
+
+    it('correctly maps dispatch to props', () => {
+      expect(listingFormNode.find('ListingForm').props()).toBeDefined();
+    });
+
     it('pre-fills title and body input fields with empty string', () => {
       const titleInput = listingFormNode.find('input').first();
       const bodyInput = listingFormNode.find('textarea');
@@ -59,6 +69,14 @@ describe('listing form container', () => {
     beforeEach(() => {
       const fakeParams = { formType: 'edit', listingId: 1 };
       listingFormNode = mount(<ListingFormContainer store={fakeStore} params={fakeParams} />);
+    });
+
+    it('correctly maps state to props', () => {
+      expect(listingFormNode.find('ListingForm').props().listing).toEqual(fakeListing);
+    });
+
+    it('correctly maps dispatch to props', () => {
+      expect(listingFormNode.find('ListingForm').props().action).toBeDefined();
     });
 
     it('pre-fills title and body input fields with listing data from the store', () => {

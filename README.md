@@ -1,27 +1,20 @@
 # React-Redux Testing at App Academy
 
-Sample Assessment for a Rails-React/Redux apps
+Sample Assessment for a Rails & React-Redux app.
 
 ## React-Redux Assessment
 
-Read this entire README before running specs for the first time - it contains
-important information about running tests with Jest.
-
-## Design Documents
+### Design Documents
 * [Database Schema][db_schema]
-* [View Wireframes][views]
 
-[db_schema]: ../skeleton/docs/db_schema.md
-[views]: ../skeleton/docs/views.md
-
-## Instructions
-
-## Setup
+### Instructions
+#### Setup
 
 1. `npm install`
 2. `bundle install`
 3. `bundle exec rake db:setup`
   - NB: you will need to have a PostgreSQL server running!
+  - All required backend code is provided
 
 To test your code live in the browser, run:
 1. `rails server`
@@ -30,10 +23,7 @@ To test your code live in the browser, run:
 
 NB: you do **not** need to have a server or webpack running to run and pass specs.
 
-You will begin with the backend entirely set up. Parts of the frontend skeleton
-have been provided for you as well.
-
-## Running specs
+### Running specs
 
 You will be running your code using Jest.  Navigate to the root folder of the
 skeleton and run `npm test` to run all specs at once.  
@@ -60,12 +50,13 @@ Redux tests:
 
 Component tests:
 
-1. `frontend/__tests__/post_index-test.js`
-  * Write `PostIndexContainer` before `PostIndex`
-2. `frontend/__tests__/post_index_item-test.js`
-3. `frontend/__tests__/post_form-test.js`
-  * Write `PostFormContainer` before `PostForm`
+1. `frontend/__tests__/post_index_container-test.js`
+2. `frontend/__tests__/post_index-test.js`
+3. `frontend/__tests__/post_index_item-test.js`
+4. `frontend/__tests__/post_form-test.js`
+  * Write `PostFormContainer` before `PostForm` (this spec file tests both components)
 4. `frontend/__tests__/post_show-test.js`
+  * Write `PostFormContainer` before `PostForm` (this spec file tests both components)
 
 ## Debugging tips
 
