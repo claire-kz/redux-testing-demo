@@ -21,7 +21,7 @@ describe('listing show', () => {
   let listingShow;
 
   beforeEach(() => {
-    ListingShow.componentDidMount = jest.fn();
+    // ListingShow.componentDidMount = jest.fn();
     ListingActions.fetchListing = jest.fn(() => dispatch => {});
     const testParams = { listingId: testListing.id };
 
