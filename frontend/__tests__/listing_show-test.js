@@ -5,17 +5,17 @@ import { createStore, applyMiddleware } from 'redux';
 import ListingShowContainer from '../components/listings/listing_show_container';
 import ListingShow from '../components/listings/listing_show';
 import { Link } from 'react-router';
-import { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import * as ListingActions from '../actions/listing_actions';
 import thunk from 'redux-thunk';
 
-const fakeListing = {
+const testListing = {
   id: 1,
   title: "Title",
   body: "Body"
 };
-const fakeReducer = (oldState, action) => ({ listings: { 1: fakeListing }});
-const fakeStore = createStore(fakeReducer, applyMiddleware(thunk));
+const testReducer = (oldState, action) => ({ listings: { [testListing.id]: testListing }});
+const testStore = createStore(testReducer, applyMiddleware(thunk));
 
 describe('listing show', () => {
   let listingShow;
@@ -23,15 +23,15 @@ describe('listing show', () => {
   beforeEach(() => {
     ListingShow.componentDidMount = jest.fn();
     ListingActions.fetchListing = jest.fn(() => dispatch => {});
-    const fakeParams = { listingId: fakeListing.id };
+    const testParams = { listingId: testListing.id };
 
     listingShow = mount(
-      <ListingShowContainer store={fakeStore} params={fakeParams}/>
+      <ListingShowContainer store={testStore} params={testParams}/>
     ).find(ListingShow);
   });
 
   it('correctly maps state to props', () => {
-    expect(listingShow.props().listing).toEqual(fakeListing);
+    expect(listingShow.props().listing).toEqual(testListing);
   });
 
   it('correctly maps dispatch to props', () => {
@@ -41,8 +41,8 @@ describe('listing show', () => {
   it('contains the listing information', () => {
     const renderedText = listingShow.text();
 
-    expect(renderedText).toContain(fakeListing.title);
-    expect(renderedText).toContain(fakeListing.body);
+    expect(renderedText).toContain(testListing.title);
+    expect(renderedText).toContain(testListing.body);
   });
 
   it('has a link to the listing index', () => {

@@ -19,13 +19,13 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 
-const listings = {
+const testListings = {
   1: { id: 1, title: "Title1" },
   2: { id: 2, title: "Title2" },
   3: { id: 3, title: "Title3" }
 };
-const fakeReducer = (oldState, action) => ({ listings });
-const fakeStore = createStore(fakeReducer, applyMiddleware(thunk));
+const testReducer = (oldState, action) => ({ listings: testListings });
+const testStore = createStore(testReducer, applyMiddleware(thunk));
 
 describe('listing index container', () => {
   let listingIndex;
@@ -33,11 +33,11 @@ describe('listing index container', () => {
   describe('container component', () => {
     beforeEach(() => {
       ListingActions.fetchListings = jest.fn(() => dispatch => {});
-      listingIndex = mount(<ListingIndexContainer store={fakeStore}/>).find(ListingIndex);
+      listingIndex = mount(<ListingIndexContainer store={testStore}/>).find(ListingIndex);
     });
 
     it('correctly maps state to props', () => {
-      expect(listingIndex.props().listings).toEqual(Object.values(listings))
+      expect(listingIndex.props().listings).toEqual(Object.values(testListings))
     });
 
     it('correctly maps dispatch to props', () => {
@@ -51,7 +51,7 @@ describe('listing index container', () => {
       expect(listingIndexItems.nodes.length).toBe(3);
 
       listingIndexItems.forEach((item, i) => {
-        expect(item.props().listing).toEqual(listings[i+1]);
+        expect(item.props().listing).toEqual(testListings[i+1]);
       });
     });
 

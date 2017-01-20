@@ -2,7 +2,7 @@
 
 import React from 'react';
 import ListingIndexItem from '../components/listings/listing_index_item';
-import { Link, hashHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 import { shallow } from 'enzyme';
 
 describe('listing index item', () => {
@@ -33,9 +33,9 @@ describe('listing index item', () => {
   });
 
   it('shows the listing\'s title as a Link to the listing\'s show page', () => {
-    const showLink = listingIndexNode.find(Link);
+    const showLink = listingIndexNode.find('Link');
 
-    expect(showLink.props().children).toEqual(`${listing.title}`);
+    expect(showLink.props().children).toEqual(listing.title);
     expect(showLink.props().to).toEqual(`/listings/${listing.id}`);
   });
 

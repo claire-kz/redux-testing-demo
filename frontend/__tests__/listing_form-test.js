@@ -7,13 +7,13 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { mount } from 'enzyme';
 
-const fakeListing = {
+const testListing = {
   id: 1,
   title: "Title",
   body: "Body"
 };
-const fakeReducer = (oldState, action) => ({ listings: { 1: fakeListing } });
-const fakeStore = createStore(fakeReducer, applyMiddleware(thunk));
+const testReducer = (oldState, action) => ({ listings: { 1: testListing } });
+const testStore = createStore(testReducer, applyMiddleware(thunk));
 
 describe('listing form container', () => {
   let listingFormNode;
@@ -26,7 +26,7 @@ describe('listing form container', () => {
 
   describe('creating a new listing', () => {
     beforeEach(() => {
-      listingFormNode = mount(<ListingFormContainer formType="new" store={fakeStore} />);
+      listingFormNode = mount(<ListingFormContainer formType="new" store={testStore} />);
     });
 
     it('correctly maps state to props', () => {
@@ -67,12 +67,12 @@ describe('listing form container', () => {
 
   describe('updating an existing listing', () => {
     beforeEach(() => {
-      const fakeParams = { formType: 'edit', listingId: 1 };
-      listingFormNode = mount(<ListingFormContainer store={fakeStore} params={fakeParams} />);
+      const testParams = { formType: 'edit', listingId: 1 };
+      listingFormNode = mount(<ListingFormContainer store={testStore} params={testParams} />);
     });
 
     it('correctly maps state to props', () => {
-      expect(listingFormNode.find('ListingForm').props().listing).toEqual(fakeListing);
+      expect(listingFormNode.find('ListingForm').props().listing).toEqual(testListing);
     });
 
     it('correctly maps dispatch to props', () => {
@@ -83,15 +83,15 @@ describe('listing form container', () => {
       const titleInput = listingFormNode.find('input').first();
       const bodyInput = listingFormNode.find('textarea');
 
-      expect(titleInput.props().value).toEqual(fakeListing.title);
-      expect(bodyInput.props().value).toEqual(fakeListing.body);
+      expect(titleInput.props().value).toEqual(testListing.title);
+      expect(bodyInput.props().value).toEqual(testListing.body);
     });
 
     it('triggers the correct action when submitted', () => {
       const form = listingFormNode.find('form');
       form.simulate('submit');
 
-      expect(ListingActions.updateListing).toBeCalledWith(fakeListing);
+      expect(ListingActions.updateListing).toBeCalledWith(testListing);
     });
   });
 });

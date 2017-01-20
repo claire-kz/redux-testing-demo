@@ -2,12 +2,12 @@ import React from 'react';
 import { Link, hashHistory } from 'react-router';
 
 const editLink = id => e => {
-    e.preventDefault();
-    const url = `/listings/${id}/edit`;
-    hashHistory.push(url);
+  e.preventDefault();
+  const url = `/listings/${id}/edit`;
+  hashHistory.push(url);
 };
 
-const ListingIndexItem = ({ listing, router, deleteListing }) => (
+const ListingIndexItem = ({ listing, deleteListing }) => (
   <li>
     <Link to={`/listings/${listing.id}`}>
       {listing.title}
