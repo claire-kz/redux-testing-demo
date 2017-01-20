@@ -4,7 +4,6 @@ import React from 'react';
 import { createStore, applyMiddleware } from 'redux';
 import ListingShowContainer from '../components/listings/listing_show_container';
 import ListingShow from '../components/listings/listing_show';
-import { Link } from 'react-router';
 import { mount } from 'enzyme';
 import * as ListingActions from '../actions/listing_actions';
 import thunk from 'redux-thunk';
@@ -45,7 +44,7 @@ describe('listing show', () => {
   });
 
   it('has a link to the listing index', () => {
-    const showLink = listingShow.find(Link);
+    const showLink = listingShow.find('Link');
 
     expect(showLink).toBeDefined();
     expect(showLink.props().to).toEqual('/');
