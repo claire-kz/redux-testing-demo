@@ -2,6 +2,10 @@
 
 Sample Assessment for a Rails & React-Redux app.
 
+Slides from React.js Meetup presentation available [here][slides].
+
+[slides]: https://www.scribd.com/document/337123380/2017-01-19-React-Meetup
+
 ### Design Documents
 * [Database Schema][db_schema]
 
