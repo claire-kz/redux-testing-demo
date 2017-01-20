@@ -5,6 +5,8 @@ Sample Assessment for a Rails & React-Redux app.
 ### Design Documents
 * [Database Schema][db_schema]
 
+[db_schema]: docs/db_schema.md
+
 ### Instructions
 #### Setup
 
@@ -48,13 +50,13 @@ Redux tests:
 
 Component tests:
 
-1. `frontend/__tests__/listing_index_container-test.js`
-2. `frontend/__tests__/listing_index-test.js`
-3. `frontend/__tests__/listing_index_item-test.js`
-4. `frontend/__tests__/listing_form-test.js`
-  * Write `ListingFormContainer` before `ListingForm` (this spec file tests both components)
+1. `frontend/__tests__/listing_index-test.js`
+  * Write `ListingIndexContainer` before `ListingIndex` (spec file tests both)
+2. `frontend/__tests__/listing_index_item-test.js`
+3. `frontend/__tests__/listing_form-test.js`
+  * Write `ListingFormContainer` before `ListingForm` (spec file tests both)
 4. `frontend/__tests__/listing_show-test.js`
-  * Write `ListingFormContainer` before `ListingForm` (this spec file tests both components)
+  * Write `ListingShowContainer` before `ListingShow` (spec file tests both)
 
 ### Debugging tips
 

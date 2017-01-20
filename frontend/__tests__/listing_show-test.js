@@ -18,35 +18,35 @@ const fakeReducer = (oldState, action) => ({ listings: { 1: fakeListing }});
 const fakeStore = createStore(fakeReducer, applyMiddleware(thunk));
 
 describe('listing show', () => {
-  let listingShowNode;
+  let listingShow;
 
   beforeEach(() => {
     ListingShow.componentDidMount = jest.fn();
     ListingActions.fetchListing = jest.fn(() => dispatch => {});
     const fakeParams = { listingId: fakeListing.id };
 
-    listingShowNode = mount(
+    listingShow = mount(
       <ListingShowContainer store={fakeStore} params={fakeParams}/>
     ).find(ListingShow);
   });
 
   it('correctly maps state to props', () => {
-    expect(listingShowNode.props().listing).toEqual(fakeListing);
+    expect(listingShow.props().listing).toEqual(fakeListing);
   });
 
   it('correctly maps dispatch to props', () => {
-    expect(listingShowNode.props().fetchListing).toBeDefined();
+    expect(listingShow.props().fetchListing).toBeDefined();
   });
 
   it('contains the listing information', () => {
-    const renderedText = listingShowNode.text();
+    const renderedText = listingShow.text();
 
     expect(renderedText).toContain(fakeListing.title);
     expect(renderedText).toContain(fakeListing.body);
   });
 
   it('has a link to the listing index', () => {
-    const showLink = listingShowNode.find(Link);
+    const showLink = listingShow.find(Link);
 
     expect(showLink).toBeDefined();
     expect(showLink.props().to).toEqual('/');
