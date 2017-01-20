@@ -48,10 +48,15 @@ describe('listing actions', () => {
       });
 
       it('dispatches RECEIVE_ALL_LISTINGS when listings have been fetched', () => {
+        // successful response from API call
         const listings = { 1: { id: 1, title: "Test", body: "Works?" }};
+
+        // mock ListingApiUtil.fetchListings to be a resolved Promise object
         ListingApiUtil.fetchListings = jest.fn(() => (
           Promise.resolve(listings)
         ));
+
+        // what we expect to be dispatched to the store
         const expectedActions = [{ type: "RECEIVE_ALL_LISTINGS", listings }];
 
         return store.dispatch(fetchListings()).then(() => {
